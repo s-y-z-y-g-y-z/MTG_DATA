@@ -1,4 +1,4 @@
-package com.mtg.app;
+package test.java.com.mtg.app;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
