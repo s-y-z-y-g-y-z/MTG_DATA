@@ -1,5 +1,6 @@
 package com.mtg.app;
 
+import com.mtg.http.HttpReq;
 import io.magicthegathering.javasdk.api.CardAPI;
 import io.magicthegathering.javasdk.resource.Card;
 
@@ -13,8 +14,11 @@ public class App
     {
         int multverseId = 1;
         Card card = CardAPI.getCard(multverseId);
+        HttpReq request = new HttpReq();
 
+        request.testIt();
         System.out.println( card.getImageUrl() );
+
 
     }
 
