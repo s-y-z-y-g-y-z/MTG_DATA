@@ -8,11 +8,16 @@ import java.io.*;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLPeerUnverifiedException;
 
+import jdk.nashorn.internal.parser.JSONParser;
+import org.json.*;
+
+
+// handles HttpRequests and the content it receives (JSON)
 public class HttpReq {
 
     public void testIt(){
 
-        String https_url = "https://www.google.com/";
+        String https_url = "https://api.scryfall.com";
         URL url;
         try {
 
@@ -20,11 +25,11 @@ public class HttpReq {
             HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
 
             //dumpl all cert info
-            print_https_cert(con);
+            //print_https_cert(con);
 
 
             //dump all the content
-            print_content(con);
+           // print_content(con);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -79,6 +84,7 @@ public class HttpReq {
 
                 while ((input = br.readLine()) != null){
                     System.out.println(input);
+
                 }
                 br.close();
 
@@ -87,6 +93,31 @@ public class HttpReq {
             }
 
         }
+    }
+
+    public void multverseIDSearch(int multverseID)
+    {
+        String https_url = "https://api.scryfall.com/cards/multiverse/" + multverseID;
+        URL url;
+        try {
+            url = new URL(https_url);
+            HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
+            //JSONObject jo = con.getContentType();
+            String price = con.getContentType();
+
+            if (con != null)
+            {
+                JSONParser jsonParser = new JSONParser();
+                jsonParser.parse(con);
+                System.out.println(price);
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

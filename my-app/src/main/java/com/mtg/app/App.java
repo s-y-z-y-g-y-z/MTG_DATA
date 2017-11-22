@@ -17,9 +17,13 @@ public class App
         HttpReq request = new HttpReq();
 
         request.testIt();
+        System.out.println();
+        request.multverseIDSearch(multverseId);
         System.out.println( card.getImageUrl() );
 
 
     }
+
+
 
 }
