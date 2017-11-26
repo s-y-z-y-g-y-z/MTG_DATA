@@ -107,8 +107,8 @@ public class HttpReq {
 
             if (con != null)
             {
-                JSONParser jsonParser = new JSONParser();
-                jsonParser.parse(con);
+               // JSONParser jsonParser = new JSONParser();
+                //jsonParser.parse(con);
                 System.out.println(price);
             }
 

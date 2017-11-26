@@ -14,6 +14,7 @@ public class App
     {
         int multverseId = 1;
         Card card = CardAPI.getCard(multverseId);
+        Swing gui = new Swing();
         HttpReq request = new HttpReq();
 
         request.testIt();
@@ -21,7 +22,7 @@ public class App
         request.multverseIDSearch(multverseId);
         System.out.println( card.getImageUrl() );
 
-
+        gui.main();
     }
 
 
