@@ -4,20 +4,24 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class Swing {
+public class Swing implements ActionListener {
 
     JFrame frame = new JFrame("Magical Tutor!");
+    App app = new App();
+    JTextField text = new JTextField(20);
+    JLabel cardImage = new JLabel(new ImageIcon());
 
-    public void main() {
+    public void buildFrame() {
 
-        //buildMenuBar();
         frame.setLayout(new FlowLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
@@ -28,6 +32,7 @@ public class Swing {
         jp.setLayout(new BorderLayout());
         URL url;
         Image image = null;
+
         try
         {
             url = new URL(image_url);
@@ -37,16 +42,61 @@ public class Swing {
         {
             System.out.println("could not load file");
         }
-        JLabel label = new JLabel(new ImageIcon(image));
-        jp.add(label, BorderLayout.CENTER);
+        ImageIcon icon = new ImageIcon(image);
+        cardImage.setIcon(icon);
+        jp.add(cardImage, BorderLayout.CENTER);
         frame.getContentPane().add(jp, BorderLayout.CENTER);
     }
 
+    public void changeImage(String image_url)
+    {
+        Image image = null;
+        try {
+            URL url = new URL(image_url);
+            image = ImageIO.read(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ImageIcon icon = new ImageIcon(image);
+        cardImage.setIcon(icon);
+    }
+
+    public void buildTextField()
+    {
+        JPanel panel = new JPanel();
+        GridLayout grid = new GridLayout(0,2);
+        panel.setLayout(grid);
+
+        JButton search = new JButton("Search");
+        search.addActionListener(this);
+        search.setActionCommand("text");
+
+        panel.add(text);
+        panel.add(search);
+        frame.getContentPane().add(panel, BorderLayout.NORTH);
+    }
+
+    public void buildButtons()
+    {
+        JPanel panel = new JPanel();
+        GridLayout grid = new GridLayout(0,2);
+        panel.setLayout(grid);
+        JButton add = new JButton("+");
+        add.addActionListener(this);
+        add.setActionCommand("add");
+        JButton remove = new JButton("-");
+        remove.addActionListener(this);
+        remove.setActionCommand("remove");
+        panel.add(add);
+        panel.add(remove);
+
+        frame.getContentPane().add(panel, BorderLayout.SOUTH);
+    }
+
     public void buildMenuBar() {
-
-//Where the GUI is created:
-
-
         JMenuBar menuBar;
         JMenu menu, submenu;
         JMenuItem menuItem;
@@ -132,4 +182,18 @@ public class Swing {
     }
 
 
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("add"))
+        {
+            app.addCard();
+        }
+        else if (e.getActionCommand().equals("remove"))
+        {
+            app.removeCard();
+        }
+        else if (e.getActionCommand().equals("text"))
+        {
+            app.searchCard();
+        }
+    }
 }
