@@ -1,20 +1,48 @@
 package com.mtg.app;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class Swing {
 
+    JFrame frame = new JFrame("Magical Tutor!");
+
     public void main() {
-        JFrame frame = new JFrame("");
-        buildMenuBar(frame);
+
+        //buildMenuBar();
+        frame.setLayout(new FlowLayout());
         frame.pack();
         frame.setVisible(true);
     }
 
-    public void buildMenuBar(JFrame frame) {
+    public void buildImage(String image_url)
+    {
+        JPanel jp = new JPanel();
+        jp.setLayout(new BorderLayout());
+        URL url;
+        Image image = null;
+        try
+        {
+            url = new URL(image_url);
+            image = ImageIO.read(url);
+        }
+        catch (IOException io)
+        {
+            System.out.println("could not load file");
+        }
+        JLabel label = new JLabel(new ImageIcon(image));
+        jp.add(label, BorderLayout.CENTER);
+        frame.getContentPane().add(jp, BorderLayout.CENTER);
+    }
+
+    public void buildMenuBar() {
 
 //Where the GUI is created:
 

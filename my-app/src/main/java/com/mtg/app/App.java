@@ -22,7 +22,19 @@ public class App
         request.multverseIDSearch(multverseId);
         System.out.println( card.getImageUrl() );
 
+        gui.buildImage(card.getImageUrl());
+        gui.buildMenuBar();
         gui.main();
+    }
+
+    public void SaveDatabase()
+    {
+
+    }
+
+    public void LoadDatabase()
+    {
+
     }
 
 
