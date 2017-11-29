@@ -19,8 +19,19 @@ public class Swing implements ActionListener {
     JLabel cardImage = new JLabel(new ImageIcon());
     JButton add = new JButton("+");
     JButton remove = new JButton("-");
+    JPanel left = new JPanel();
+    JPanel right = new JPanel();
+    JPanel center = new JPanel(new BorderLayout());
+    JPanel top = new JPanel(new GridLayout(0,2));
+    JPanel bot = new JPanel(new GridLayout(0,2));
+
 
     public void buildFrame() {
+
+        buildTextField();
+        buildImage(app.card.getImageUrl());
+        buildButtons();
+        buildMenuBar();
 
         frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,8 +41,6 @@ public class Swing implements ActionListener {
 
     public void buildImage(String image_url)
     {
-        JPanel jp = new JPanel();
-        jp.setLayout(new BorderLayout());
         URL url;
         Image image = null;
 
@@ -46,8 +55,8 @@ public class Swing implements ActionListener {
         }
         ImageIcon icon = new ImageIcon(image);
         cardImage.setIcon(icon);
-        jp.add(cardImage, BorderLayout.CENTER);
-        frame.getContentPane().add(jp, BorderLayout.CENTER);
+        center.add(cardImage);
+        frame.getContentPane().add(center, BorderLayout.CENTER);
     }
 
     public void changeImage(String image_url)
@@ -68,34 +77,27 @@ public class Swing implements ActionListener {
 
     public void buildTextField()
     {
-        JPanel panel = new JPanel();
-        GridLayout grid = new GridLayout(0,2);
-        panel.setLayout(grid);
 
         JButton search = new JButton("Search");
         search.addActionListener(this);
         search.setActionCommand("text");
 
-        panel.add(text);
-        panel.add(search);
-        frame.getContentPane().add(panel, BorderLayout.NORTH);
+        top.add(text);
+        top.add(search);
+        frame.getContentPane().add(top, BorderLayout.NORTH);
     }
 
     public void buildButtons()
     {
-        JPanel panel = new JPanel();
-        GridLayout grid = new GridLayout(0,2);
-        panel.setLayout(grid);
-
         add.addActionListener(this);
         add.setActionCommand("add");
 
         remove.addActionListener(this);
         remove.setActionCommand("remove");
-        panel.add(add);
-        panel.add(remove);
+        bot.add(add);
+        bot.add(remove);
 
-        frame.getContentPane().add(panel, BorderLayout.SOUTH);
+        frame.getContentPane().add(bot, BorderLayout.SOUTH);
     }
 
     public void buildMenuBar() {

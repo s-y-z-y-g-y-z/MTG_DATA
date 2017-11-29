@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59b200cf-ffbb-4264-9f21-8ccf508150ea" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/mtg/app/App.class" afterPath="$PROJECT_DIR$/target/classes/com/mtg/app/App.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/mtg/app/Swing.class" afterPath="$PROJECT_DIR$/target/classes/com/mtg/app/Swing.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample" afterPath="$PROJECT_DIR$/sample" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" afterPath="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" afterPath="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" />
     </list>
@@ -33,8 +33,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1920">
-              <caret line="128" column="36" lean-forward="false" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+            <state relative-caret-position="216">
+              <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,8 +55,8 @@
       <file leaf-file-name="Swing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-815">
-              <caret line="20" column="38" lean-forward="false" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+            <state relative-caret-position="289">
+              <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,8 +101,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/ActionListeners.java" />
         <option value="$PROJECT_DIR$/sample" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" />
       </list>
     </option>
   </component>
@@ -348,7 +348,7 @@
       <workItem from="1511764621930" duration="7000" />
       <workItem from="1511764639315" duration="7000" />
       <workItem from="1511790408104" duration="55000" />
-      <workItem from="1511996402718" duration="2195000" />
+      <workItem from="1511996402718" duration="3300000" />
     </task>
     <task id="LOCAL-00001" summary="added macbook capability">
       <created>1511214988316</created>
@@ -392,11 +392,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511764187657</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added alert messages for finding cards">
+      <created>1511998846840</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1511998846840</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29939000" />
+    <option name="totallyTimeSpent" value="31044000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
@@ -444,7 +451,8 @@
     <MESSAGE value="Menu Bar GUI" />
     <MESSAGE value="Basic Swing Image function" />
     <MESSAGE value="Card search and adding to file works!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Card search and adding to file works!" />
+    <MESSAGE value="Added alert messages for finding cards" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added alert messages for finding cards" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -656,8 +664,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-815">
-          <caret line="20" column="38" lean-forward="false" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+        <state relative-caret-position="289">
+          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -674,8 +682,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="128" column="36" lean-forward="false" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+        <state relative-caret-position="216">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

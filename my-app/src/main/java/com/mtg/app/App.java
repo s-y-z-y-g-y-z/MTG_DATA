@@ -35,10 +35,6 @@ public class App
         //request.multverseIDSearch(multverseId);
         System.out.println( card.getImageUrl() );
 
-        gui.buildTextField();
-        gui.buildImage(card.getImageUrl());
-        gui.buildButtons();
-        gui.buildMenuBar();
         gui.buildFrame();
     }
 
