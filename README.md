@@ -1,7 +1,9 @@
 # MTG_DATA
 Personal MTG database project
 Magic the Gathering card database that can be used to store your personal collection online
-
+==============================================================================
+the file to run the project is in a class called App in the package com.mtg.app
+==============================================================================
 Current Features
 ====================
 Type in Search bar to find cards, if succesful card image will appear.

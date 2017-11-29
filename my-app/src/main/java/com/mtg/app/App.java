@@ -5,6 +5,7 @@ import io.magicthegathering.javasdk.api.CardAPI;
 import io.magicthegathering.javasdk.resource.Card;
 import jdk.nashorn.internal.runtime.Debug;
 
+import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -97,6 +98,7 @@ public class App
             System.out.println(gui.text.getText());
             int i = 0;
             int id = 0;
+            boolean flag = false;
             LineNumberReader lnr = new LineNumberReader(new FileReader(MTG_DATA));
             while (lnr.readLine() != null)
             {
@@ -112,10 +114,20 @@ public class App
             System.out.println(id_num);
             card = CardAPI.getCard(Integer.parseInt(id_num));
             gui.changeImage(card.getImageUrl());
+            gui.add.setEnabled(true);
+            gui.remove.setEnabled(true);
+            JOptionPane.showMessageDialog(gui.frame, "Card Found!");
         }
         catch (IOException e)
         {
             System.out.println("Could not read " + MTG_DATA);
+        }
+        catch (ArrayIndexOutOfBoundsException f)
+        {
+            System.out.println("Could not find card.");
+            JOptionPane.showMessageDialog(gui.frame, "Card Not Found!");
+            gui.add.setEnabled(false);
+            gui.remove.setEnabled(false);
         }
     }
 

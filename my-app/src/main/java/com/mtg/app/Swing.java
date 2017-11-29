@@ -17,6 +17,8 @@ public class Swing implements ActionListener {
     App app = new App();
     JTextField text = new JTextField(20);
     JLabel cardImage = new JLabel(new ImageIcon());
+    JButton add = new JButton("+");
+    JButton remove = new JButton("-");
 
     public void buildFrame() {
 
@@ -84,10 +86,10 @@ public class Swing implements ActionListener {
         JPanel panel = new JPanel();
         GridLayout grid = new GridLayout(0,2);
         panel.setLayout(grid);
-        JButton add = new JButton("+");
+
         add.addActionListener(this);
         add.setActionCommand("add");
-        JButton remove = new JButton("-");
+
         remove.addActionListener(this);
         remove.setActionCommand("remove");
         panel.add(add);
@@ -181,6 +183,10 @@ public class Swing implements ActionListener {
 
     }
 
+    public void ErrorMsg()
+    {
+
+    }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("add"))
