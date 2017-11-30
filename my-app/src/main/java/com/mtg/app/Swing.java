@@ -17,8 +17,8 @@ public class Swing implements ActionListener {
     App app = new App();
     JTextField text = new JTextField(20);
     JLabel cardImage = new JLabel(new ImageIcon());
-    JButton add = new JButton("+");
-    JButton remove = new JButton("-");
+    JButton add = new JButton("Add");
+    JButton remove = new JButton("Remove");
     JPanel left = new JPanel();
     JPanel right = new JPanel();
     JPanel center = new JPanel(new BorderLayout());
@@ -28,12 +28,14 @@ public class Swing implements ActionListener {
 
     public void buildFrame() {
 
+        frame.setLayout(new BorderLayout());
+
         buildTextField();
         buildImage(app.card.getImageUrl());
         buildButtons();
         buildMenuBar();
 
-        frame.setLayout(new FlowLayout());
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
