@@ -1,38 +1,50 @@
 package com.mtg.app;
 
+import com.mtg.http.HttpReq;
+
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
 public class Swing implements ActionListener {
-
-    JFrame frame = new JFrame("Magical Tutor!");
+    //Class calls
     App app = new App();
+    HttpReq req = new HttpReq();
+    //Swing stuff
+    JFrame frame = new JFrame("Magical Tutor!");
     JTextField text = new JTextField(20);
     JLabel cardImage = new JLabel(new ImageIcon());
     JButton add = new JButton("Add");
     JButton remove = new JButton("Remove");
-    JPanel left = new JPanel();
-    JPanel right = new JPanel();
+    JPanel left = new JPanel(new FlowLayout());
+    JPanel right = new JPanel(new BorderLayout());
     JPanel center = new JPanel(new BorderLayout());
     JPanel top = new JPanel(new GridLayout(0,2));
     JPanel bot = new JPanel(new GridLayout(0,2));
 
+    TextArea left_text = new TextArea(5,10);
+    TextArea right_text = new TextArea(10,10);
+
 
     public void buildFrame() {
 
+        frame.setBackground(Color.black);
         frame.setLayout(new BorderLayout());
 
         buildTextField();
         buildImage(app.card.getImageUrl());
+        buildPrice(app.getCardPrice());
         buildButtons();
+        buildInfo();
         buildMenuBar();
 
 
@@ -64,15 +76,24 @@ public class Swing implements ActionListener {
     public void changeImage(String image_url)
     {
         Image image = null;
-        try {
-            URL url = new URL(image_url);
-            image = ImageIO.read(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (image_url.contains("http")) {
+            try {
+                URL url = new URL(image_url);
+                image = ImageIO.read(url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
+        else
+        {
+            try {
+                image = ImageIO.read(new File(image_url));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         ImageIcon icon = new ImageIcon(image);
         cardImage.setIcon(icon);
     }
@@ -100,6 +121,26 @@ public class Swing implements ActionListener {
         bot.add(remove);
 
         frame.getContentPane().add(bot, BorderLayout.SOUTH);
+    }
+
+    public void buildPrice(String price)
+    {
+        left_text.setText(null);
+        left.setName("Price:");
+        left_text.append("Price\n");
+        left_text.append("$" + price);
+        left.add(left_text);
+        frame.getContentPane().add(left, BorderLayout.WEST);
+    }
+
+    public void buildInfo()
+    {
+        right_text.setText(null);
+        right.setName("Info");
+        right_text.append("Card Info:\n");
+
+        right.add(right_text);
+        frame.getContentPane().add(right, BorderLayout.EAST);
     }
 
     public void buildMenuBar() {
@@ -184,11 +225,6 @@ public class Swing implements ActionListener {
 
         frame.setJMenuBar(menuBar);
 
-
-    }
-
-    public void ErrorMsg()
-    {
 
     }
 

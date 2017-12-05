@@ -8,6 +8,7 @@ import java.io.*;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLPeerUnverifiedException;
 
+import com.oracle.javafx.jmx.json.JSONReader;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.json.*;
 
@@ -70,54 +71,59 @@ public class HttpReq {
 
     }
 
-    private void print_content(HttpsURLConnection con){
+    private JSONObject getJSONPrice(HttpsURLConnection con){
+        String price = null;
+        JSONObject json = null;
         if(con!=null){
 
             try {
 
                 System.out.println("****** Content of the URL ********");
-                BufferedReader br =
-                        new BufferedReader(
-                                new InputStreamReader(con.getInputStream()));
-
+                BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String input;
 
                 while ((input = br.readLine()) != null){
                     System.out.println(input);
-
+                    //price = json.getString("usd");
+                    //System.out.println("Card price = " + price);
+                    price = input;
                 }
+                json = new JSONObject(price);
                 br.close();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
+
+        return json;
     }
 
-    public void multverseIDSearch(int multverseID)
+    public String multverseIDInfo(int multverseID, String key)
     {
         String https_url = "https://api.scryfall.com/cards/multiverse/" + multverseID;
         URL url;
+        String price = null;
         try {
             url = new URL(https_url);
             HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
-            //JSONObject jo = con.getContentType();
-            String price = con.getContentType();
+            JSONObject jo = new JSONObject();
 
             if (con != null)
             {
                // JSONParser jsonParser = new JSONParser();
                 //jsonParser.parse(con);
-                System.out.println(price);
+                jo = getJSONPrice(con);
             }
+            price = jo.getString(key);
+            System.out.println("Card price = " + price);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+        return price;
     }
+
+
 }

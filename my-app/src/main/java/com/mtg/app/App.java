@@ -51,8 +51,7 @@ public class App
         {
             System.out.println("Could not write to file " + fileName);
         }
-
-
+        JOptionPane.showMessageDialog(gui.frame, card.getName() + " added.");
     }
     public void removeCard()
     {
@@ -85,6 +84,7 @@ public class App
         {
             System.out.println("Error reading from " + fileName);
         }
+        JOptionPane.showMessageDialog(gui.frame, card.getName() + " removed.");
     }
 
     public void searchCard()
@@ -109,7 +109,10 @@ public class App
             String id_num = Files.readAllLines(Paths.get("MTG_IDS")).get(id - 1);
             System.out.println(id_num);
             card = CardAPI.getCard(Integer.parseInt(id_num));
+            String price = getCardPrice();
+            System.out.println(card.getName() + " price = " + price);
             gui.changeImage(card.getImageUrl());
+            gui.buildPrice(price);
             gui.add.setEnabled(true);
             gui.remove.setEnabled(true);
             JOptionPane.showMessageDialog(gui.frame, "Card Found!");
@@ -121,12 +124,20 @@ public class App
         catch (ArrayIndexOutOfBoundsException f)
         {
             System.out.println("Could not find card.");
+            gui.changeImage("Images/card_back.jpg");
+            gui.buildPrice("No price available");
             JOptionPane.showMessageDialog(gui.frame, "Card Not Found!");
             gui.add.setEnabled(false);
             gui.remove.setEnabled(false);
         }
     }
 
+    public String getCardPrice()
+    {
+        String price = request.multverseIDInfo(card.getMultiverseid(), "usd");
+        return price;
+    }
+    //public String get
     public void LoadDatabase()
     {
 
