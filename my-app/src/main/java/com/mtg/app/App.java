@@ -9,9 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-/**
- * Hello world!
- *
+/*
+// App class handles the logic of the program and is responsible for getting information
+// from MagicTheGathering API via its library, and the Scryfall API using an Http request
+// handled by the HttpReq class. This information is passed and displayed by the Swing class
  */
 public class App 
 {
@@ -22,8 +23,11 @@ public class App
 
     private File MTG_DATA = new File("MTG_Cards");
     private File MTG_IDS = new File("MTG_IDs");
+
     public File database = new File("sample");
 
+    // Creates default card object which is a class from the MagicTheGathering API,
+    // calls Swing function that builds the GUI
     public static void main( String[] args )
     {
         int multverseId = 1;
@@ -32,6 +36,7 @@ public class App
         gui.buildFrame();
     }
 
+    // Adds current card object to database, checks if good file
     public void addCard()
     {
         try
@@ -47,6 +52,9 @@ public class App
 
         JOptionPane.showMessageDialog(gui.frame, card.getName() + " added.");
     }
+
+    // Creates tempFile and reads from file, if card name is found, it is skipped reading
+    // and is added to the tempFile. The TempFIle is then renamed to the original file name.
     public void removeCard()
     {
         File tempFile = new File("temp" + database);
@@ -82,6 +90,12 @@ public class App
         JOptionPane.showMessageDialog(gui.frame, card.getName() + " removed.");
     }
 
+    // The big one
+    // =========================
+    // Gets text from GUI text field and searches MTG_Cards file to see if input matches card name database.
+    // If it wasn't then the user is notified in the GUI that their input was not found.
+    // If found, program gets the line number and looks at the line number in MTG_IDs file to get the multiverse ID
+    // multiverse ID is used with Scryfall API to get card information and display to GUI
     public void searchCard()
     {
         String price;
@@ -96,6 +110,7 @@ public class App
             int id = 0;
             boolean flag = false;
             LineNumberReader lnr = new LineNumberReader(new FileReader(MTG_DATA));
+
             while (lnr.readLine() != null)
             {
                 String temp = lnr.readLine();
@@ -143,6 +158,8 @@ public class App
         }
     }
 
+    // Getters that get string values from HttpReq which handles connection to Scryfall API to be passed
+    // to Swing class for the GUI
     public String getCardPrice()
     {
         String price = request.multverseIDInfo(card.getMultiverseid(), "usd");
@@ -164,6 +181,7 @@ public class App
         return rarity;
     }
 
+    // Exits the application
     public void exitApp()
     {
         System.out.println("Bye, Bye!");
@@ -171,10 +189,13 @@ public class App
     }
 
     // USE ONLY TO GENERATE THE DATABASE OF CARDS
+    // Uses MagicTheGathering API to get the list of all cards
+    // writes the name info to a file, and multiverse ID values to another file
     public void getAllCards()
     {
         data = CardAPI.getAllCards();
         File fileName = new File("MTG_IDs");
+        File fileName2 = new File("MTG_Cards");
 
         try
         {
@@ -188,6 +209,20 @@ public class App
         catch (IOException e)
         {
             System.out.println("Could not write to file " + fileName);
+        }
+
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(fileName2, true));
+            for (Card card : data)
+            {
+                bw.write(card.getName() + "\n");
+            }
+            bw.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Could not write to file " + fileName2);
         }
     }
 

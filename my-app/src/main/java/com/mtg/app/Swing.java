@@ -1,7 +1,5 @@
 package com.mtg.app;
 
-import com.mtg.http.HttpReq;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +10,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
+// Swing class handles all of java Swing library to create GUI.
+// Uses the App class to get information that is shown to user.
 public class Swing implements ActionListener {
 
     //Class calls
@@ -34,6 +33,7 @@ public class Swing implements ActionListener {
     TextArea left_text = new TextArea(5,15);
     TextArea right_text = new TextArea(5,15);
 
+    // Builds the frame and all the various Swing fields.
     public void buildFrame() {
 
         frame.setBackground(Color.black);
@@ -52,6 +52,7 @@ public class Swing implements ActionListener {
         frame.setVisible(true);
     }
 
+    // Creates the Image frame
     public void buildImage(String image_url)
     {
         URL url;
@@ -73,6 +74,7 @@ public class Swing implements ActionListener {
         frame.getContentPane().add(center, BorderLayout.CENTER);
     }
 
+    // Used by App to change the image shown to user
     public void changeImage(String image_url)
     {
         Image image = null;
@@ -98,6 +100,7 @@ public class Swing implements ActionListener {
         cardImage.setIcon(icon);
     }
 
+    // Creates the search bar to search for a card
     public void buildTextField()
     {
 
@@ -111,6 +114,7 @@ public class Swing implements ActionListener {
         frame.getContentPane().add(top, BorderLayout.NORTH);
     }
 
+    // Creates the add and remove buttons to add and remove cards from database, respectively.
     public void buildButtons()
     {
         add.addActionListener(this);
@@ -125,6 +129,7 @@ public class Swing implements ActionListener {
         frame.getContentPane().add(bot, BorderLayout.SOUTH);
     }
 
+    // Builds the price information text area
     public void buildPrice(String price)
     {
         left_text.setText(null);
@@ -138,6 +143,7 @@ public class Swing implements ActionListener {
         frame.getContentPane().add(left, BorderLayout.WEST);
     }
 
+    // Builds the card information text area
     public void buildInfo(String artist, String rarity, String set)
     {
         right_text.setText(null);
@@ -153,6 +159,7 @@ public class Swing implements ActionListener {
         frame.getContentPane().add(right, BorderLayout.EAST);
     }
 
+    // Builds the top menu bar of the application
     public void buildMenuBar() {
         JMenuBar menuBar = new JMenuBar();
 
@@ -187,6 +194,7 @@ public class Swing implements ActionListener {
         frame.setJMenuBar(menuBar);
     }
 
+    // Handles the events of various buttons and menu items
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("add"))
         {
