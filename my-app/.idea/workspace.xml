@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59b200cf-ffbb-4264-9f21-8ccf508150ea" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/mtg/app/App.class" afterPath="$PROJECT_DIR$/target/classes/com/mtg/app/App.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/mtg/app/Swing.class" afterPath="$PROJECT_DIR$/target/classes/com/mtg/app/Swing.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample" afterPath="$PROJECT_DIR$/sample" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" afterPath="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" afterPath="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java" afterPath="$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HttpReq.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HttpReq.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+            <state relative-caret-position="395">
+              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,24 +36,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="175" column="29" lean-forward="true" selection-start-line="175" selection-start-column="29" selection-end-line="175" selection-end-column="29" />
+            <state relative-caret-position="62">
+              <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sample" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -59,8 +51,8 @@
       <file leaf-file-name="Swing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1958">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="290">
+              <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,9 +97,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/ActionListeners.java" />
         <option value="$PROJECT_DIR$/sample" />
         <option value="$PROJECT_DIR$/MTG_IDs" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java" />
       </list>
     </option>
   </component>
@@ -327,7 +319,7 @@
       <workItem from="1511996402718" duration="4975000" />
       <workItem from="1512054130943" duration="3994000" />
       <workItem from="1512364513679" duration="306000" />
-      <workItem from="1512428485098" duration="16066000" />
+      <workItem from="1512428485098" duration="17797000" />
     </task>
     <task id="LOCAL-00001" summary="added macbook capability">
       <created>1511214988316</created>
@@ -406,11 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512523701536</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Formating">
+      <created>1512524314964</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1512524314964</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53085000" />
+    <option name="totallyTimeSpent" value="54816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
@@ -464,7 +463,8 @@
     <MESSAGE value="Basic GUI setup" />
     <MESSAGE value="Added Price info" />
     <MESSAGE value="Added MenuBar interactions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added MenuBar interactions." />
+    <MESSAGE value="Formating" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formating" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -780,6 +780,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sample">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -788,30 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/Swing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1958">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/app/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="175" column="29" lean-forward="true" selection-start-line="175" selection-start-column="29" selection-end-line="175" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mtg/http/HttpReq.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+        <state relative-caret-position="62">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

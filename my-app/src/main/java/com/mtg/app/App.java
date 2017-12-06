@@ -22,6 +22,7 @@ public class App
 
     private File MTG_DATA = new File("MTG_Cards");
     private File MTG_IDS = new File("MTG_IDs");
+    public File database = new File("sample");
 
     public static void main( String[] args )
     {
@@ -33,29 +34,26 @@ public class App
 
     public void addCard()
     {
-        File fileName = new File("sample");
-
         try
         {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(database, true));
             bw.write(card.getName() + "\n");
             bw.close();
         }
         catch (IOException e)
         {
-            System.out.println("Could not write to file " + fileName);
+            System.out.println("Could not write to file " + database);
         }
 
         JOptionPane.showMessageDialog(gui.frame, card.getName() + " added.");
     }
     public void removeCard()
     {
-        File fileName = new File("sample");
-        File tempFile = new File("tempSample");
+        File tempFile = new File("temp" + database);
 
         try
         {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            BufferedReader br = new BufferedReader(new FileReader(database));
             BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
             String line;
             while((line = br.readLine()) != null)
@@ -70,15 +68,15 @@ public class App
 
             br.close();
             bw.close();
-            tempFile.renameTo(fileName);
+            tempFile.renameTo(database);
         }
         catch (FileNotFoundException e)
         {
-            System.out.println("Could not open " + fileName);
+            System.out.println("Could not open " + database);
         }
         catch (IOException f)
         {
-            System.out.println("Error reading from " + fileName);
+            System.out.println("Error reading from " + database);
         }
 
         JOptionPane.showMessageDialog(gui.frame, card.getName() + " removed.");
@@ -141,7 +139,7 @@ public class App
             gui.add.setEnabled(false);
             gui.remove.setEnabled(false);
 
-            JOptionPane.showMessageDialog(gui.frame, "Card Not Found!");
+            JOptionPane.showMessageDialog(gui.frame, "Card Not Found!","Error",JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -17,7 +17,6 @@ public class Swing implements ActionListener {
 
     //Class calls
     App app = new App();
-    HttpReq req = new HttpReq();
 
     //Swing stuff
     JFrame frame = new JFrame("Magical Tutor!");
@@ -34,7 +33,6 @@ public class Swing implements ActionListener {
     //Text areas
     TextArea left_text = new TextArea(5,15);
     TextArea right_text = new TextArea(5,15);
-
 
     public void buildFrame() {
 
@@ -161,8 +159,10 @@ public class Swing implements ActionListener {
         JMenu file = new JMenu("File");
         menuBar.add(file);
 
-        JMenuItem save = new JMenuItem("Save");
-        file.add(save);
+        JMenuItem _new = new JMenuItem("New");
+        file.add(_new);
+        _new.addActionListener(this);
+        _new.setActionCommand("new");
         file.addSeparator();
 
         JMenuItem exit = new JMenuItem("Exit", new ImageIcon("images/middle.gif"));
@@ -202,7 +202,7 @@ public class Swing implements ActionListener {
         }
         else if (e.getActionCommand().equals("exit"))
         {
-            int result = JOptionPane.showConfirmDialog(frame,"Do you wish to exit Magical tutor?","Exit",JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(frame,"Do you wish to exit Magical tutor?","Exit",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION)
             {
                 app.exitApp();
@@ -211,7 +211,7 @@ public class Swing implements ActionListener {
         }
         else if (e.getActionCommand().equals("rebuildData"))
         {
-            int result = JOptionPane.showConfirmDialog(frame, "Loading card data can take up to 30 minutes.\nContinue?","Warning",JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(frame, "Loading card data can take up to 30 minutes.\nContinue?","Warning",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
             if (result == JOptionPane.YES_OPTION)
             {
                 app.getAllCards();
@@ -222,6 +222,10 @@ public class Swing implements ActionListener {
             JOptionPane.showMessageDialog(frame,"Type in the textfield and click search to search for a card.\n" +
                                                          "Use the Add and Remove buttons to add the displayed card to your list of cards.\n" +
                                                          "Use File>Exit or the red X in the corner of the screen to exit.\n");
+        }
+        else if (e.getActionCommand().equals("new"))
+        {
+            app.database = new File(JOptionPane.showInputDialog("Please enter a file name:"));
         }
     }
 
