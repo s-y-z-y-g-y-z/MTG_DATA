@@ -3,14 +3,11 @@ package com.mtg.app;
 import com.mtg.http.HttpReq;
 import io.magicthegathering.javasdk.api.CardAPI;
 import io.magicthegathering.javasdk.resource.Card;
-import jdk.nashorn.internal.runtime.Debug;
-
 import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Hello world!
@@ -18,10 +15,11 @@ import java.util.stream.Stream;
  */
 public class App 
 {
-    //static List<Card> data = CardAPI.getAllCards();
+    static List<Card> data;
     static Swing gui = new Swing();
     static HttpReq request = new HttpReq();
     static Card card;
+
     private File MTG_DATA = new File("MTG_Cards");
     private File MTG_IDS = new File("MTG_IDs");
 
@@ -29,12 +27,6 @@ public class App
     {
         int multverseId = 1;
         card = CardAPI.getCard(multverseId);
-
-        //request.testIt();
-        //System.out.println();
-        //request.multverseIDSearch(multverseId);
-        System.out.println( card.getImageUrl() );
-
         gui.buildFrame();
     }
 
@@ -89,6 +81,10 @@ public class App
 
     public void searchCard()
     {
+        String price;
+        String artist;
+        String rarity;
+        String set;
         try
         {
             System.out.println(gui.text.getText());
@@ -109,10 +105,15 @@ public class App
             String id_num = Files.readAllLines(Paths.get("MTG_IDS")).get(id - 1);
             System.out.println(id_num);
             card = CardAPI.getCard(Integer.parseInt(id_num));
-            String price = getCardPrice();
+            price = getCardPrice();
+            artist = getCardArtist();
+            rarity = getCardRarity();
+            set = getCardSet();
+
             System.out.println(card.getName() + " price = " + price);
             gui.changeImage(card.getImageUrl());
-            gui.buildPrice(price);
+            gui.buildPrice("$" + price);
+            gui.buildInfo(artist,rarity,set);
             gui.add.setEnabled(true);
             gui.remove.setEnabled(true);
             JOptionPane.showMessageDialog(gui.frame, "Card Found!");
@@ -126,6 +127,7 @@ public class App
             System.out.println("Could not find card.");
             gui.changeImage("Images/card_back.jpg");
             gui.buildPrice("No price available");
+            gui.buildInfo("No artist available","No rarity available","No set available");
             JOptionPane.showMessageDialog(gui.frame, "Card Not Found!");
             gui.add.setEnabled(false);
             gui.remove.setEnabled(false);
@@ -137,6 +139,27 @@ public class App
         String price = request.multverseIDInfo(card.getMultiverseid(), "usd");
         return price;
     }
+    public String getCardSet()
+    {
+        String set = request.multverseIDInfo(card.getMultiverseid(),"set_name");
+        return set;
+    }
+    public String getCardArtist()
+    {
+        String artist = request.multverseIDInfo(card.getMultiverseid(),"artist");
+        return artist;
+    }
+    public String getCardRarity()
+    {
+        String rarity = request.multverseIDInfo(card.getMultiverseid(),"rarity");
+        return rarity;
+    }
+
+    public void exitApp()
+    {
+        System.out.println("Bye, Bye!");
+        System.exit(1);
+    }
     //public String get
     public void LoadDatabase()
     {
@@ -144,8 +167,9 @@ public class App
     }
 
     // USE ONLY TO GENERATE THE DATABASE OF CARDS
-    /*public static void getAllCards()
+    public void getAllCards()
     {
+        data = CardAPI.getAllCards();
         File fileName = new File("MTG_IDs");
         try
         {
@@ -161,7 +185,7 @@ public class App
             System.out.println("Could not write to file " + fileName);
         }
     }
-    */
+
 
 
 }

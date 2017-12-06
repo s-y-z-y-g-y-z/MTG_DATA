@@ -3,12 +3,10 @@ package com.mtg.app;
 import com.mtg.http.HttpReq;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -16,9 +14,11 @@ import java.net.URL;
 
 
 public class Swing implements ActionListener {
+
     //Class calls
     App app = new App();
     HttpReq req = new HttpReq();
+
     //Swing stuff
     JFrame frame = new JFrame("Magical Tutor!");
     JTextField text = new JTextField(20);
@@ -31,8 +31,9 @@ public class Swing implements ActionListener {
     JPanel top = new JPanel(new GridLayout(0,2));
     JPanel bot = new JPanel(new GridLayout(0,2));
 
-    TextArea left_text = new TextArea(5,10);
-    TextArea right_text = new TextArea(10,10);
+    //Text areas
+    TextArea left_text = new TextArea(5,15);
+    TextArea right_text = new TextArea(5,15);
 
 
     public void buildFrame() {
@@ -44,7 +45,7 @@ public class Swing implements ActionListener {
         buildImage(app.card.getImageUrl());
         buildPrice(app.getCardPrice());
         buildButtons();
-        buildInfo();
+        buildInfo(app.getCardArtist(),app.getCardRarity(),app.getCardSet());
         buildMenuBar();
 
 
@@ -104,7 +105,6 @@ public class Swing implements ActionListener {
         JButton search = new JButton("Search");
         search.addActionListener(this);
         search.setActionCommand("text");
-
         top.add(text);
         top.add(search);
         frame.getContentPane().add(top, BorderLayout.NORTH);
@@ -114,7 +114,6 @@ public class Swing implements ActionListener {
     {
         add.addActionListener(this);
         add.setActionCommand("add");
-
         remove.addActionListener(this);
         remove.setActionCommand("remove");
         bot.add(add);
@@ -126,106 +125,61 @@ public class Swing implements ActionListener {
     public void buildPrice(String price)
     {
         left_text.setText(null);
+        left_text.setEnabled(false);
         left.setName("Price:");
         left_text.append("Price\n");
-        left_text.append("$" + price);
+        left_text.append(price);
         left.add(left_text);
         frame.getContentPane().add(left, BorderLayout.WEST);
     }
 
-    public void buildInfo()
+    public void buildInfo(String artist, String rarity, String set)
     {
         right_text.setText(null);
+        right_text.setEnabled(false);
         right.setName("Info");
-        right_text.append("Card Info:\n");
+        right_text.append("Card Info\n=========\n");
+        right_text.append("Rarity:\n" + rarity + "\n");
+        right_text.append("Set:\n" + set + "\n");
+        right_text.append("Artist:\n" + artist + "\n");
 
         right.add(right_text);
         frame.getContentPane().add(right, BorderLayout.EAST);
     }
 
     public void buildMenuBar() {
-        JMenuBar menuBar;
-        JMenu menu, submenu;
-        JMenuItem menuItem;
-        JRadioButtonMenuItem rbMenuItem;
-        JCheckBoxMenuItem cbMenuItem;
+        JMenuBar menuBar = new JMenuBar();
 
-//Create the menu bar.
-        menuBar = new JMenuBar();
+        JMenu file = new JMenu("File");
+        menuBar.add(file);
 
-//Build the first menu.
-        menu = new JMenu("A Menu");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
-        menuBar.add(menu);
+        JMenuItem save = new JMenuItem("Save");
+        file.add(save);
+        file.addSeparator();
 
-//a group of JMenuItems
-        menuItem = new JMenuItem("A text-only menu item",
-                KeyEvent.VK_T);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "This doesn't really do anything");
-        menu.add(menuItem);
+        JMenuItem exit = new JMenuItem("Exit", new ImageIcon("images/middle.gif"));
+        file.add(exit);
+        exit.addActionListener(this);
+        exit.setActionCommand("exit");
 
-        menuItem = new JMenuItem("Both text and icon",
-                new ImageIcon("images/middle.gif"));
-        menuItem.setMnemonic(KeyEvent.VK_B);
-        menu.add(menuItem);
+        JMenu tool = new JMenu("Tools");
+        menuBar.add(tool);
 
-        menuItem = new JMenuItem(new ImageIcon("images/middle.gif"));
-        menuItem.setMnemonic(KeyEvent.VK_D);
-        menu.add(menuItem);
+        JMenuItem help = new JMenuItem("Help");
+        tool.add(help);
+        tool.addSeparator();
+        help.addActionListener(this);
+        help.setActionCommand("help");
 
-//a group of radio button menu items
-        menu.addSeparator();
-        ButtonGroup group = new ButtonGroup();
-        rbMenuItem = new JRadioButtonMenuItem("A radio button menu item");
-        rbMenuItem.setSelected(true);
-        rbMenuItem.setMnemonic(KeyEvent.VK_R);
-        group.add(rbMenuItem);
-        menu.add(rbMenuItem);
+        JMenuItem loadData = new JMenuItem("Load Card Data");
+        tool.add(loadData);
+        loadData.addActionListener(this);
+        loadData.setActionCommand("rebuildData");
 
-        rbMenuItem = new JRadioButtonMenuItem("Another one");
-        rbMenuItem.setMnemonic(KeyEvent.VK_O);
-        group.add(rbMenuItem);
-        menu.add(rbMenuItem);
 
-//a group of check box menu items
-        menu.addSeparator();
-        cbMenuItem = new JCheckBoxMenuItem("A check box menu item");
-        cbMenuItem.setMnemonic(KeyEvent.VK_C);
-        menu.add(cbMenuItem);
 
-        cbMenuItem = new JCheckBoxMenuItem("Another one");
-        cbMenuItem.setMnemonic(KeyEvent.VK_H);
-        menu.add(cbMenuItem);
-
-//a submenu
-        menu.addSeparator();
-        submenu = new JMenu("A submenu");
-        submenu.setMnemonic(KeyEvent.VK_S);
-
-        menuItem = new JMenuItem("An item in the submenu");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        submenu.add(menuItem);
-
-        menuItem = new JMenuItem("Another item");
-        submenu.add(menuItem);
-        menu.add(submenu);
-
-//Build second menu in the menu bar.
-        menu = new JMenu("Another Menu");
-        menu.setMnemonic(KeyEvent.VK_N);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "This menu does nothing");
-        menuBar.add(menu);
 
         frame.setJMenuBar(menuBar);
-
-
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -241,5 +195,29 @@ public class Swing implements ActionListener {
         {
             app.searchCard();
         }
+        else if (e.getActionCommand().equals("exit"))
+        {
+            int result = JOptionPane.showConfirmDialog(frame,"Do you wish to exit Magical tutor?","Exit",JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION)
+            {
+                app.exitApp();
+            }
+
+        }
+        else if (e.getActionCommand().equals("rebuildData"))
+        {
+            int result = JOptionPane.showConfirmDialog(frame, "Loading card data can take up to 30 minutes.\nContinue?","Warning",JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION)
+            {
+                app.getAllCards();
+            }
+        }
+        else if (e.getActionCommand().equals("help"))
+        {
+            JOptionPane.showMessageDialog(frame,"Type in the textfield and click search to search for a card.\n" +
+                                                         "Use the Add and Remove buttons to add the displayed card to your list of cards.\n" +
+                                                         "Use File>Exit or the red X in the corner of the screen to exit.\n");
+        }
     }
+
 }
