@@ -12,9 +12,9 @@ import org.json.*;
 public class HttpReq {
     //UNUSED function that was uses to test connection to Scryfall API
     public void testIt(){
-
         String https_url = "https://api.scryfall.com";
         URL url;
+
         try {
 
             url = new URL(https_url);
@@ -32,8 +32,8 @@ public class HttpReq {
     private JSONObject getJSONPrice(HttpsURLConnection con){
         String price = null;
         JSONObject json = null;
-        if(con!=null){
 
+        if(con!=null){
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String input;
@@ -57,6 +57,7 @@ public class HttpReq {
         String https_url = "https://api.scryfall.com/cards/multiverse/" + multverseID;
         URL url;
         String price = null;
+
         try {
             url = new URL(https_url);
             HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
@@ -74,6 +75,7 @@ public class HttpReq {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return price;
     }
 }

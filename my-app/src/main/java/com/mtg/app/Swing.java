@@ -71,6 +71,7 @@ public class Swing implements ActionListener {
         ImageIcon icon = new ImageIcon(image);
         cardImage.setIcon(icon);
         center.add(cardImage);
+
         frame.getContentPane().add(center, BorderLayout.CENTER);
     }
 
@@ -105,8 +106,10 @@ public class Swing implements ActionListener {
         JButton search = new JButton("Search");
         search.addActionListener(this);
         search.setActionCommand("text");
+
         top.add(text);
         top.add(search);
+
         frame.getContentPane().add(top, BorderLayout.NORTH);
     }
 
@@ -114,8 +117,10 @@ public class Swing implements ActionListener {
     {
         add.addActionListener(this);
         add.setActionCommand("add");
+
         remove.addActionListener(this);
         remove.setActionCommand("remove");
+
         bot.add(add);
         bot.add(remove);
 
@@ -126,10 +131,12 @@ public class Swing implements ActionListener {
     {
         left_text.setText(null);
         left_text.setEnabled(false);
-        left.setName("Price:");
         left_text.append("Price\n");
         left_text.append(price);
+
+        left.setName("Price:");
         left.add(left_text);
+
         frame.getContentPane().add(left, BorderLayout.WEST);
     }
 
@@ -137,13 +144,14 @@ public class Swing implements ActionListener {
     {
         right_text.setText(null);
         right_text.setEnabled(false);
-        right.setName("Info");
         right_text.append("Card Info\n=========\n");
         right_text.append("Rarity:\n" + rarity + "\n");
         right_text.append("Set:\n" + set + "\n");
         right_text.append("Artist:\n" + artist + "\n");
 
+        right.setName("Info");
         right.add(right_text);
+
         frame.getContentPane().add(right, BorderLayout.EAST);
     }
 
@@ -175,9 +183,6 @@ public class Swing implements ActionListener {
         tool.add(loadData);
         loadData.addActionListener(this);
         loadData.setActionCommand("rebuildData");
-
-
-
 
         frame.setJMenuBar(menuBar);
     }
